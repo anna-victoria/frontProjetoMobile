@@ -4,6 +4,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF2A2B41),
       appBar: AppBar(
         title: const Text('Login'),
       ),
@@ -12,11 +13,11 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [ 
             //Put cineall.png of the assets folder
-            //TODO: Fix the image
-            // Container(
-            //   child: Image.asset('assets/images/cineall.png'),
-            // ),
-            const SizedBox(height: 40), 
+            // TODO: Fix the image
+            Container(
+              child: Image.asset('assets/images/CINEALL.png'),
+            ),
+            const SizedBox(height: 70), 
             Container(
               width: MediaQuery.of(context).size.width * 0.80,
               decoration: BoxDecoration(
@@ -24,7 +25,7 @@ class LoginPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.black.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),
