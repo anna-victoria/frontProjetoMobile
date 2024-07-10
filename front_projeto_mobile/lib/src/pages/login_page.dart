@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_projeto_mobile/src/pages/home_page_funcionario.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -11,13 +12,12 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ 
-            //Put cineall.png of the assets folder
+          children: [
             // TODO: Fix the image
             Container(
               child: Image.asset('assets/images/CINEALL.png'),
             ),
-            const SizedBox(height: 70), 
+            const SizedBox(height: 70),
             Container(
               width: MediaQuery.of(context).size.width * 0.80,
               decoration: BoxDecoration(
@@ -36,7 +36,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Form(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05),
                       child: Column(
                         children: [
                           SizedBox(height: 40),
@@ -64,6 +65,10 @@ class LoginPage extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           // TODO: Implement login logic
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePageFuncionario()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF3BCA63),
