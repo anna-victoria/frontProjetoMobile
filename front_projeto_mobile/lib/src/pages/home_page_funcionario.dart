@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_projeto_mobile/src/pages/cadastro_filme_funcionario.dart';
 
 class HomePageFuncionario extends StatelessWidget {
   @override
@@ -11,11 +12,11 @@ class HomePageFuncionario extends StatelessWidget {
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          //Botton for add new movie
+          //Button for add new movie
           const SizedBox(height: 70),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/add_movie');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroFilmeFuncionario()));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF3BCA63),
