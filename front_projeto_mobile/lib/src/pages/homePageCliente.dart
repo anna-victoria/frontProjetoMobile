@@ -69,7 +69,7 @@ class HomePageCliente extends StatelessWidget {
             left: 37,
             right: 37,
             top: 114,
-            bottom: 61, // Adjust the position to avoid the bottom bar
+            bottom: 61, 
             child: ListView(
               children: List.generate(10, (index) => MovieCard()),
             ),
@@ -156,7 +156,7 @@ class _MovieCardState extends State<MovieCard> {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         width: 340,
-        height: isExpanded ? 400 : 150, // Reduced the height when expanded
+        height: isExpanded ? 400 : 150, 
         margin: EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           color: Color(0xFFD9D9D9),
@@ -228,7 +228,7 @@ class _MovieCardState extends State<MovieCard> {
               ),
               Positioned(
                 left: 33,
-                top: 220, // Adjusted the positions to fit within the new height
+                top: 220, 
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     labelText: 'Escolha o horário:',
