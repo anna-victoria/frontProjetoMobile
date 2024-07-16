@@ -5,6 +5,7 @@ import 'sample_item.dart';
 import 'sample_item_details_view.dart';
 
 /// Displays a list of SampleItems.
+// Main Page
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
     super.key,
