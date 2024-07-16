@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_projeto_mobile/src/pages/home_page_funcionario.dart';
+import 'package:front_projeto_mobile/src/sign_up_page.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -79,7 +80,10 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          // TODO: Implement registration logic
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpPage()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFFC6EAD0),

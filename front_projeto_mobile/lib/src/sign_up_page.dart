@@ -14,12 +14,9 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF2A2B41),
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => print("A"), // TEMPLATE
-          tooltip: "Voltar",
-          icon: const Icon(Icons.arrow_back_rounded),
-        ),
+        title: const Text('Tela de Cadastro'),
       ),
       body: Center(
         child: Column(
