@@ -17,7 +17,7 @@ class HomePageCliente extends StatelessWidget {
               width: 414,
               height: 54,
               color: Colors.purple[100],
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
@@ -52,7 +52,7 @@ class HomePageCliente extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 61,
             top: 66,
             child: Text(
@@ -82,7 +82,7 @@ class HomePageCliente extends StatelessWidget {
               width: 414,
               height: 61,
               color: Colors.white,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
@@ -173,7 +173,7 @@ class _MovieCardState extends State<MovieCard> {
                 color: Color(0xFFB75DEF),
               ),
             ),
-            Positioned(
+            const Positioned(
               left: 130,
               top: 15,
               child: Text(
@@ -186,7 +186,7 @@ class _MovieCardState extends State<MovieCard> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               left: 130,
               top: 55,
               child: Text(
@@ -198,7 +198,7 @@ class _MovieCardState extends State<MovieCard> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               left: 130,
               top: 100,
               child: Text(
@@ -305,7 +305,7 @@ class _MovieCardState extends State<MovieCard> {
                         backgroundColor: Colors.blue,
                         fixedSize: Size(100, 50),
                       ),
-                      child: Text(
+                      child: const Text(
                         'VOLTAR',
                         style: TextStyle(color: Colors.black),
                       ),
@@ -316,7 +316,7 @@ class _MovieCardState extends State<MovieCard> {
                         backgroundColor: Colors.green,
                         fixedSize: Size(100, 50),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ADICIONAR',
                         style: TextStyle(color: Colors.black),
                       ),
