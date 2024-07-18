@@ -55,65 +55,58 @@ class HomePageFuncionario extends StatelessWidget {
                 const SizedBox(height: 20),
                 Row(
                   children: [
-                    Container(
-                      width: 100,
-                      height: 150,
-                      color: Color.fromARGB(255, 196, 131, 131),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      flex: 3,
+                      child: Container(
+                        width: 100,
+                        height: 150,
+                        color: Color.fromARGB(255, 196, 131, 131),
+                      ),
                     ),
-                    const Column(
-                      children: [
-                        //TODO: Align text to the left
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text('Nome do Filme:',
-                              style: TextStyle(color: Colors.black)),
+                    const Flexible(
+                      fit: FlexFit.tight,
+                      flex: 20,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: const Text(
+                          '''
+                          Nome do Filme: \n
+                          Exemplo de nome de filme \n
+                          Horários: \n
+                          10:00 - 12:00 - 15:30 18:00 - 22:00 \n
+                          Sala 02
+                        ''',
+                          style: TextStyle(color: Colors.black),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Exemplo de nome de filme',
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Horários:',
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('10:00 - 12:00 - 15:30',
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('18:00 - 22:00',
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Sala 02',
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                      ],
+                      ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Colors.black,
-                          onPressed: () {},
+                    Flexible(
+                      fit: FlexFit.loose,
+                      flex: 1,
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              color: Colors.black,
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.edit),
+                              color: Colors.black,
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.info),
+                              color: Colors.black,
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          color: Colors.black,
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.info),
-                          color: Colors.black,
-                          onPressed: () {},
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
