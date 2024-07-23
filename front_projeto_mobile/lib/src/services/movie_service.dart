@@ -50,6 +50,7 @@ class MovieService {
           'id': item['id'] ?? 0,
           'imagem': item['imagem'],
           'titulo': item['titulo'],
+          'genero': item['genero'] ?? 'Gênero não disponível',
           'descricao': item['sinopse'] ?? 'Descrição não disponível',
           'horario': item['horario'] ?? 'Não disponível',
           'sala': item['sala'] ?? 'Não disponível',
