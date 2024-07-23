@@ -34,11 +34,17 @@ class _HomePageFuncionarioState extends State<HomePageFuncionario> {
     Navigator.pushReplacementNamed(context, '/');
   }
 
-  Future<void> _deleteMovie(int id) async {
+  Future<void> _deleteMovie(dynamic id) async {
     try {
-      await _movieService.deleteMovie(id);
-      _loadMovies();
+      if (id is int) {
+        print('Deletando filme com ID: $id');
+        await _movieService.deleteMovie(id);
+        _loadMovies();
+      } else {
+        throw Exception('ID do filme é inválido');
+      }
     } catch (e) {
+      print('Erro ao deletar filme: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao deletar filme: $e')),
       );
@@ -57,7 +63,8 @@ class _HomePageFuncionarioState extends State<HomePageFuncionario> {
           'duracao': movie['duracao'],
           'imagem': movie['imagem'],
           'quantidadeIngressos': movie['quantidadeIngressos'],
-          'quantidadeIngressosDisponivel': movie['quantidadeIngressosDisponivel'],
+          'quantidadeIngressosDisponivel':
+              movie['quantidadeIngressosDisponivel'],
           'horario': movie['horario'],
           'sala': movie['sala'],
         }),

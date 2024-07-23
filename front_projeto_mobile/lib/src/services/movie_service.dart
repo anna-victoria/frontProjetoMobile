@@ -11,7 +11,7 @@ class MovieService {
     required String description,
     required String genre,
     required int duration,
-    required String image, 
+    required String image,
     required int totalTickets,
     required int availableTickets,
     required String horario,
@@ -27,7 +27,7 @@ class MovieService {
         'sinopse': description,
         'genero': genre,
         'duracao': duration,
-        'imagem': image, 
+        'imagem': image,
         'quantidadeIngressos': totalTickets,
         'quantidadeIngressosDisponivel': availableTickets,
         'horario': horario,
@@ -47,9 +47,10 @@ class MovieService {
       final data = jsonDecode(response.body) as List<dynamic>;
       return data.map((item) {
         return {
+          'id': item['id'] ?? 0,
           'imagem': item['imagem'],
           'titulo': item['titulo'],
-          'genero': item['genero'] ?? 'Gênero não disponível',
+          'descricao': item['sinopse'] ?? 'Descrição não disponível',
           'horario': item['horario'] ?? 'Não disponível',
           'sala': item['sala'] ?? 'Não disponível',
         };
@@ -61,8 +62,9 @@ class MovieService {
 
   Future<void> deleteMovie(int id) async {
     final response = await http.delete(Uri.parse('$_baseUrl/filmes/$id'));
+    print('Delete response status: ${response.statusCode}');
     if (response.statusCode != 200) {
-      throw Exception('Failed to delete movie');
+      throw Exception('Falha ao deletar filme');
     }
   }
 
@@ -73,7 +75,7 @@ class MovieService {
       body: jsonEncode(movie),
     );
     if (response.statusCode != 200) {
-      throw Exception('Failed to update movie');
+      throw Exception('Falha ao atualizar filme');
     }
   }
 }

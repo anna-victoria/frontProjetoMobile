@@ -103,7 +103,7 @@ Future<void> _saveMovie() async {
     }
     Navigator.pop(context);
   } catch (e) {
-    print('Failed to save movie: $e');
+    print('Falha ao salvar filme: $e');
   }
 }
 
