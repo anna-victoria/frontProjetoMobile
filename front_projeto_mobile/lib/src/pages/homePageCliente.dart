@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HomePageCliente extends StatelessWidget {
+  final String nome;
+
+  HomePageCliente({required this.nome});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,7 @@ class HomePageCliente extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'Bem vindo(a) Pessoinha!',
+                      'Bem vindo(a) $nome!',
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 14,
@@ -31,9 +35,8 @@ class HomePageCliente extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
+                  PopupMenuButton<String>(
+                    icon: Row(
                       children: [
                         Icon(Icons.person, color: Colors.black),
                         SizedBox(width: 4),
@@ -47,6 +50,19 @@ class HomePageCliente extends StatelessWidget {
                         ),
                       ],
                     ),
+                    onSelected: (String value) {
+                      if (value == 'Logout') {
+                        Navigator.pushReplacementNamed(context, '/');
+                      }
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return [
+                        PopupMenuItem<String>(
+                          value: 'Logout',
+                          child: Text('Logout'),
+                        ),
+                      ];
+                    },
                   ),
                 ],
               ),
@@ -69,7 +85,7 @@ class HomePageCliente extends StatelessWidget {
             left: 37,
             right: 37,
             top: 114,
-            bottom: 61, 
+            bottom: 61,
             child: ListView(
               children: List.generate(10, (index) => MovieCard()),
             ),
@@ -136,6 +152,7 @@ class HomePageCliente extends StatelessWidget {
     );
   }
 }
+
 
 class MovieCard extends StatefulWidget {
   @override

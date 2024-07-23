@@ -16,10 +16,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => LoginPage(),
-        '/home_cliente': (context) => HomePageCliente(),
-        '/home_funcionario': (context) => HomePageFuncionario(),
+      onGenerateRoute: (settings) {
+        if (settings.name == '/home_cliente') {
+          final args = settings.arguments as Map<String, String>?;
+          final nome = args?['nome'] ?? '';
+
+          return MaterialPageRoute(
+            builder: (context) => HomePageCliente(nome: nome),
+          );
+        }
+
+        if (settings.name == '/home_funcionario') {
+          final args = settings.arguments as Map<String, String>?;
+          final nome = args?['nome'] ?? '';
+          return MaterialPageRoute(
+            builder: (context) => HomePageFuncionario(nome: nome),
+          );
+        }
+
+        return MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        );
       },
     );
   }

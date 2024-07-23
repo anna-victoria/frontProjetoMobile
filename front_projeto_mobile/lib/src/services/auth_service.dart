@@ -24,10 +24,12 @@ class AuthService {
       final responseData = jsonDecode(response.body);
       final token = responseData['token'];
       final role = responseData['roles'][0];
+      final nome = responseData['nome'];
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
       await prefs.setString('role', role);
+            await prefs.setString('nome', nome); 
       print('Token: $token');
       print('Role: $role');
       return true;
@@ -39,5 +41,10 @@ class AuthService {
   Future<String?> getRole() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('role');
+  }
+
+    Future<String?> getName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('nome');
   }
 }

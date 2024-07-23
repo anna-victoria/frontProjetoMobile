@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:front_projeto_mobile/src/pages/homePageCliente.dart';
 import 'package:front_projeto_mobile/src/pages/home_page_funcionario.dart';
-import 'package:front_projeto_mobile/src/auth_service.dart';
+import 'package:front_projeto_mobile/src/services/auth_service.dart';
+import 'package:front_projeto_mobile/src/pages/sign_up_page.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -78,13 +79,17 @@ class LoginPage extends StatelessWidget {
                               await _authService.login(email, password);
                           if (success) {
                             final role = await _authService.getRole();
+                            final name =
+                                await _authService.getName(); 
                             debugPrint('User role: $role');
                             if (role == 'ROLE_USUARIO') {
                               debugPrint('Navigating to HomePageCliente');
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePageCliente()),
+                                  builder: (context) =>
+                                      HomePageCliente(nome: name ?? ''),
+                                ),
                               );
                             } else if (role == 'ROLE_FUNCIONARIO') {
                               debugPrint('Navigating to HomePageFuncionario');
@@ -92,7 +97,7 @@ class LoginPage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        HomePageFuncionario()),
+                                        HomePageFuncionario(nome: name ?? '')),
                               );
                             }
                           } else {
@@ -113,11 +118,10 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          // Navega diretamente para HomePageCliente
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomePageCliente()),
+                                builder: (context) => SignUpPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
