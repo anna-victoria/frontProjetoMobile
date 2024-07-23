@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:front_projeto_mobile/src/pages/homePageCliente.dart';
 import 'package:front_projeto_mobile/src/pages/home_page_funcionario.dart';
-import 'package:front_projeto_mobile/src/sign_up_page.dart';
+import 'package:front_projeto_mobile/src/auth_service.dart';
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +19,6 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // TODO: Fix the image
             Container(
               child: Image.asset('assets/images/CINEALL.png'),
             ),
@@ -43,12 +47,14 @@ class LoginPage extends StatelessWidget {
                         children: [
                           SizedBox(height: 40),
                           TextFormField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               fillColor: Colors.white,
                               labelText: 'Email',
                             ),
                           ),
                           TextFormField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: 'Senha',
@@ -64,12 +70,39 @@ class LoginPage extends StatelessWidget {
                     children: [
                       SizedBox(height: 16),
                       ElevatedButton(
-                        onPressed: () {
-                          // TODO: Implement login logic
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePageFuncionario()));
+                        onPressed: () async {
+                          final email = emailController.text;
+                          final password = passwordController.text;
+
+                          final success =
+                              await _authService.login(email, password);
+                          if (success) {
+                            final role = await _authService.getRole();
+                            debugPrint('User role: $role');
+                            if (role == 'ROLE_USUARIO') {
+                              debugPrint('Navigating to HomePageCliente');
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePageCliente()),
+                              );
+                            } else if (role == 'ROLE_FUNCIONARIO') {
+                              debugPrint('Navigating to HomePageFuncionario');
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomePageFuncionario()),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'Login falhou. Por favor, verifique suas credenciais.'),
+                              ),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF3BCA63),
@@ -80,10 +113,12 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage()));
+                          // Navega diretamente para HomePageCliente
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePageCliente()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFFC6EAD0),
