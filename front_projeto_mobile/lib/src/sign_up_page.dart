@@ -47,7 +47,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       TextFormField(
                         keyboardType: TextInputType.name,
-                        // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -61,7 +60,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -75,7 +73,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextFormField(
                         obscureText: true,
-                        // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -89,7 +86,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextFormField(
                         keyboardType: TextInputType.datetime,
-                        // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -103,7 +99,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
-                        // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
@@ -118,10 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            // If the form is valid, display a snackbar. In the real world,
-                            // you'd often call a server or save the information in a database.
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
                             );
