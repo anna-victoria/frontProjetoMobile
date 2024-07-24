@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:front_projeto_mobile/src/pages/ticket_historic.dart';
+import 'package:front_projeto_mobile/src/pages/Cart.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'homePageCliente.dart';
 
-class CartPage extends StatefulWidget {
-  final List<Map<String, dynamic>> cartItems;
+class HistoricPage extends StatefulWidget {
+  final List<Map<String, dynamic>> historicItems;
 
-  CartPage({required this.cartItems});
+  HistoricPage({required this.historicItems});
 
   @override
-  _CartPageState createState() => _CartPageState();
+  _HistoricPage createState() => _HistoricPage();
 }
 
-class _CartPageState extends State<CartPage> {
+class _HistoricPage extends State<HistoricPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +32,10 @@ class _CartPageState extends State<CartPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'Carrinho',
+                      'Histórico de Compras',
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 14,
@@ -44,7 +44,7 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ),
                   PopupMenuButton<String>(
-                    icon: Row(
+                    icon: const Row(
                       children: [
                         Icon(Icons.person, color: Colors.black),
                         SizedBox(width: 4),
@@ -65,7 +65,7 @@ class _CartPageState extends State<CartPage> {
                     },
                     itemBuilder: (BuildContext context) {
                       return [
-                        PopupMenuItem<String>(
+                        const PopupMenuItem<String>(
                           value: 'Logout',
                           child: Text('Logout'),
                         ),
@@ -81,10 +81,10 @@ class _CartPageState extends State<CartPage> {
             top: 121,
             right: 21,
             bottom: 61,
-            child: widget.cartItems.isEmpty
-                ? Center(
+            child: widget.historicItems.isEmpty
+                ? const Center(
                     child: Text(
-                      'Carrinho vazio',
+                      'Nenhuma compra, por enquanto',
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 18,
@@ -93,12 +93,13 @@ class _CartPageState extends State<CartPage> {
                     ),
                   )
                 : ListView.builder(
-                    itemCount: widget.cartItems.length,
+                    itemCount: widget.historicItems.length,
                     itemBuilder: (context, index) {
-                      final item = widget.cartItems[index];
+                      final item = widget.historicItems[index];
                       final imageBase64 = item['imagem'] ?? '';
                       final title = item['titulo'] ?? 'Título não disponível';
                       final quantity = item['quantidade'] ?? 1;
+                      final local = item['local'] ?? 'Local não disponível';
 
                       ImageProvider imageProvider;
                       if (imageBase64.isNotEmpty) {
@@ -135,7 +136,7 @@ class _CartPageState extends State<CartPage> {
                                 children: [
                                   Text(
                                     title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Roboto',
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -144,8 +145,17 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                   SizedBox(height: 5),
                                   Text(
+                                    'Local: $local',
+                                    style: const TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
                                     'Quantidade: $quantity',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: 'Roboto',
                                       fontSize: 16,
                                       color: Colors.black,
@@ -164,7 +174,7 @@ class _CartPageState extends State<CartPage> {
             left: 0,
             right: 0,
             bottom: 0,
-            height: 70,
+            height: 68,
             child: SafeArea(
               child: Container(
                 color: Colors.white,
@@ -177,9 +187,17 @@ class _CartPageState extends State<CartPage> {
                         IconButton(
                           icon: Icon(Icons.shopping_cart, size: 30),
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CartPage(
+                                  cartItems: [],
+                                ),
+                              ),
+                            );
                           },
                         ),
-                        Text(
+                        const Text(
                           'Comprar',
                           style: TextStyle(
                             fontFamily: 'Roboto',
@@ -198,12 +216,12 @@ class _CartPageState extends State<CartPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePageCliente(nome: widget.cartItems.isEmpty ? '' : widget.cartItems[0]['nome']),
+                                builder: (context) => HomePageCliente(nome: widget.historicItems.isEmpty ? '' : widget.historicItems[0]['nome']),
                               ),
                             );
                           },
                         ),
-                        Text(
+                        const Text(
                           'Página Inicial',
                           style: TextStyle(
                             fontFamily: 'Roboto',
@@ -222,12 +240,12 @@ class _CartPageState extends State<CartPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HistoricPage(historicItems: []),
+                                builder: (context) => HistoricPage(historicItems: widget.historicItems),
                               ),
                             );
                           },
                         ),
-                        Text(
+                        const Text(
                           'Compras',
                           style: TextStyle(
                             fontFamily: 'Roboto',
@@ -243,19 +261,6 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: ElevatedButton(
-          onPressed: () {
-          },
-          child: Text('Finalizar Compra'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF3BCA63),
-            foregroundColor: Colors.black,
-            minimumSize: Size(double.infinity, 50),
-          ),
-        ),
       ),
     );
   }

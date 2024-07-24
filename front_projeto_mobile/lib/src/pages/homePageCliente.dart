@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_projeto_mobile/src/pages/ticket_historic.dart';
 import 'package:front_projeto_mobile/src/services/movie_service.dart';
 import 'package:front_projeto_mobile/src/pages/movieDetailPage.dart';
 import 'package:front_projeto_mobile/src/pages/Cart.dart';
@@ -47,7 +48,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
                       'Bem vindo(a) ${widget.nome}!',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Roboto',
                         fontSize: 14,
                         color: Colors.black,
@@ -55,7 +56,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                     ),
                   ),
                   PopupMenuButton<String>(
-                    icon: Row(
+                    icon: const Row(
                       children: [
                         Icon(Icons.person, color: Colors.black),
                         SizedBox(width: 4),
@@ -76,7 +77,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                     },
                     itemBuilder: (BuildContext context) {
                       return [
-                        PopupMenuItem<String>(
+                        const PopupMenuItem<String>(
                           value: 'Logout',
                           child: Text('Logout'),
                         ),
@@ -87,7 +88,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 61,
             top: 66,
             child: Text(
@@ -169,7 +170,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                                     image: imageProvider,
                                     fit: BoxFit.cover,
                                   ),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(8),
                                     bottomLeft: Radius.circular(8),
                                   ),
@@ -184,7 +185,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                                     children: [
                                       Text(
                                         title,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500,
@@ -194,7 +195,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                                       SizedBox(height: 8),
                                       Text(
                                         'Horários: $time',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 14,
                                           color: Colors.black,
@@ -203,7 +204,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                                       SizedBox(height: 4),
                                       Text(
                                         'Sala: $room',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 14,
                                           color: Colors.black,
@@ -212,7 +213,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                                       SizedBox(height: 8),
                                       Text(
                                         'Descrição: $description',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: 'Roboto',
                                           fontSize: 14,
                                           color: Colors.black,
@@ -257,7 +258,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                           );
                         },
                       ),
-                      Text(
+                      const Text(
                         'Comprar',
                         style: TextStyle(
                           fontFamily: 'Roboto',
@@ -282,7 +283,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
                           );
                         },
                       ),
-                      Text(
+                      const Text(
                         'Página Inicial',
                         style: TextStyle(
                           fontFamily: 'Roboto',
@@ -298,10 +299,16 @@ class _HomePageClienteState extends State<HomePageCliente> {
                       IconButton(
                         icon: Icon(Icons.list, size: 30),
                         onPressed: () {
-                          // Navegar para a tela de compras, se aplicável
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HistoricPage(historicItems: [],),
+                            ),
+                          );
                         },
                       ),
-                      Text(
+                      const Text(
                         'Compras',
                         style: TextStyle(
                           fontFamily: 'Roboto',
