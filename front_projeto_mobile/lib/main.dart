@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:front_projeto_mobile/src/pages/Cart.dart';
 import 'package:front_projeto_mobile/src/pages/homePageCliente.dart';
 import 'package:front_projeto_mobile/src/pages/home_page_funcionario.dart';
 import 'package:front_projeto_mobile/src/pages/login_page.dart';
-import 'package:front_projeto_mobile/src/pages/sign_up_page.dart';
-import 'package:front_projeto_mobile/src/pages/ticket_historic.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,7 +35,7 @@ class MyApp extends StatelessWidget {
         }
 
         return MaterialPageRoute(
-          builder: (context) => HomePageCliente(nome: '',),
+          builder: (context) => LoginPage(),
         );
       },
     );
